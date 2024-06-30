@@ -238,12 +238,12 @@ local Tab4 = Window:MakeTab({
 })
 
 Tab2:AddButton({
-    Name = "Void tp (Z)",
+    Name = "Void tp (V)",
     Callback = function()
         local originalPosition
 
         game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessedEvent)
-            if input.KeyCode == Enum.KeyCode.Z and not gameProcessedEvent then
+            if input.KeyCode == Enum.KeyCode.V and not gameProcessedEvent then
                 if not originalPosition then
                     originalPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
                 end
