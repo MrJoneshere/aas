@@ -22,7 +22,7 @@ if not _G.Settings then
     _G.Settings = {
         Players = {
             ["Ignore Me"] = true,
-            ["Ignore Others"] = false,
+            ["Ignore Others"] = true,
             ["Ignore Tools"] = true
         },
         Meshes = {
@@ -31,11 +31,11 @@ if not _G.Settings then
             Destroy = false
         },
         Images = {
-            Invisible = true,
+            Invisible = false,
             Destroy = false
         },
         Explosions = {
-            Smaller = true,
+            Smaller = false,
             Invisible = false, -- Not recommended for PVP games
             Destroy = false -- Not recommended for PVP games
         },
