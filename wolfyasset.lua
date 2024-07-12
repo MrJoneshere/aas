@@ -32,16 +32,16 @@ if not _G.Settings then
         },
         Images = {
             Invisible = false,
-            Destroy = false
+            Destroy = true
         },
         Explosions = {
-            Smaller = false,
+            Smaller = true,
             Invisible = false, -- Not recommended for PVP games
             Destroy = false -- Not recommended for PVP games
         },
         Particles = {
-            Invisible = true,
-            Destroy = true
+            Invisible = false,
+            Destroy = false
         },
         TextLabels = {
             LowerQuality = true,
@@ -58,7 +58,7 @@ if not _G.Settings then
         Other = {
             ["FPS Cap"] = 75, -- Set this true to uncap FPS
             ["No Camera Effects"] = true,
-            ["No Clothes"] = true,
+            ["No Clothes"] = false,
             ["Low Water Graphics"] = true,
             ["No Shadows"] = true,
             ["Low Rendering"] = false,
