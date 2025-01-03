@@ -5,23 +5,20 @@ local UserInputService = game:GetService("UserInputService")
 local player = Players.LocalPlayer
 local PlayerGui = player:WaitForChild("PlayerGui")
 
--- GUI Oluşturma
 local screenGui = Instance.new("ScreenGui", PlayerGui)
 screenGui.Name = "ChatMessengerGUI"
 
--- Ana GUI Frame
 local frame = Instance.new("Frame", screenGui)
 frame.Size = UDim2.new(0, 300, 0, 150)
 frame.Position = UDim2.new(0.5, -150, 0.5, -75)
 frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-frame.BackgroundTransparency = 1 -- Animasyon için başlangıçta görünmez
+frame.BackgroundTransparency = 1
 frame.BorderSizePixel = 0
 frame.AnchorPoint = Vector2.new(0.5, 0.5)
 
 local corner = Instance.new("UICorner", frame)
 corner.CornerRadius = UDim.new(0, 12)
 
--- Gradient Efekti
 local gradient = Instance.new("UIGradient", frame)
 gradient.Color = ColorSequence.new{
     ColorSequenceKeypoint.new(0, Color3.fromRGB(60, 60, 60)),
@@ -29,7 +26,6 @@ gradient.Color = ColorSequence.new{
 }
 gradient.Rotation = 45
 
--- Gradient Animasyonu
 task.spawn(function()
     while true do
         for i = 0, 360, 1 do
@@ -39,13 +35,11 @@ task.spawn(function()
     end
 end)
 
--- UIStroke for Shadow Effect
 local shadow = Instance.new("UIStroke", frame)
 shadow.Thickness = 5
 shadow.Transparency = 0.8
 shadow.Color = Color3.fromRGB(0, 0, 0)
 
--- Başlık
 local titleLabel = Instance.new("TextLabel", frame)
 titleLabel.Size = UDim2.new(0, 150, 0, 30)
 titleLabel.Position = UDim2.new(0, 10, 0, 10)
@@ -56,23 +50,21 @@ titleLabel.TextSize = 16
 titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 titleLabel.TextXAlignment = Enum.TextXAlignment.Left
 
--- Açılış Animasyonu
 local function animateOpen()
     frame.BackgroundTransparency = 1
     frame.Size = UDim2.new(0, 0, 0, 0)
-    frame.Rotation = 45 -- Döndürme başlangıcı
+    frame.Rotation = 45
 
     local tween = TweenService:Create(frame, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
         BackgroundTransparency = 0.1,
         Size = UDim2.new(0, 300, 0, 150),
-        Rotation = 0 -- Döndürme bitişi
+        Rotation = 0
     })
     tween:Play()
 end
 
 animateOpen()
 
--- TextBox
 local textBox = Instance.new("TextBox", frame)
 textBox.Size = UDim2.new(0.8, 0, 0, 30)
 textBox.Position = UDim2.new(0.1, 0, 0.4, 0)
@@ -87,7 +79,6 @@ textBox.PlaceholderColor3 = Color3.fromRGB(200, 200, 200)
 local textBoxCorner = Instance.new("UICorner", textBox)
 textBoxCorner.CornerRadius = UDim.new(0, 8)
 
--- Send Butonu
 local sendButton = Instance.new("TextButton", frame)
 sendButton.Size = UDim2.new(0.25, 0, 0, 25)
 sendButton.Position = UDim2.new(0.7, 0, 0.8, 0)
@@ -101,14 +92,12 @@ sendButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 local sendButtonCorner = Instance.new("UICorner", sendButton)
 sendButtonCorner.CornerRadius = UDim.new(0, 8)
 
--- Gradient Efekti (Send Butonu)
 local buttonGradient = Instance.new("UIGradient", sendButton)
 buttonGradient.Color = ColorSequence.new{
     ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 150, 255)),
     ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 100, 200))
 }
 
--- Send Button Fonksiyonu
 sendButton.MouseButton1Click:Connect(function()
     local message = textBox.Text
     if message ~= "" then
@@ -117,7 +106,6 @@ sendButton.MouseButton1Click:Connect(function()
     end
 end)
 
--- GUI Hareket Ettirme ve Oyun Etkileşimi Kesme
 local dragging = false
 local dragInput, dragStart, startPos
 
@@ -126,7 +114,7 @@ frame.InputBegan:Connect(function(input)
         dragging = true
         dragStart = input.Position
         startPos = frame.Position
-        UserInputService.ModalEnabled = true -- Oyun kontrollerini devre dışı bırak
+        UserInputService.ModalEnabled = true
 
         local shadowTween = TweenService:Create(shadow, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
             Transparency = 0.4,
@@ -137,7 +125,7 @@ frame.InputBegan:Connect(function(input)
         input.Changed:Connect(function()
             if input.UserInputState == Enum.UserInputState.End then
                 dragging = false
-                UserInputService.ModalEnabled = false -- Kontrolleri yeniden etkinleştir
+                UserInputService.ModalEnabled = false
 
                 local resetShadowTween = TweenService:Create(shadow, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
                     Transparency = 0.8,
