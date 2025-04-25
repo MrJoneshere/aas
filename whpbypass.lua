@@ -70,7 +70,7 @@ local function startProtection()
         return
     end
     
-    notify("Protection Active")
+    notify("Cheeze Em`")
     resizeImportantPart()
     deleteUnwantedParts()
     
