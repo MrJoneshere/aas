@@ -1,8 +1,9 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/DiosDi/VexonHub/main/VexonHub", true))()
-setclipboard(game:HttpGet("https://raw.githubusercontent.com/DiosDi/VexonHub/main/Key", true))
-local key = loadstring(game:HttpGet("https://raw.githubusercontent.com/DiosDi/VexonHub/main/Key", true))()
-game:GetService("StarterGui"):SetCore("SendNotification", {
+local key = game:HttpGet("https://raw.githubusercontent.com/DiosDi/VexonHub/main/Key", true):match("^%s*(.-)%s*$")
+setclipboard(key)
+wait(0.2)
+game.StarterGui:SetCore("SendNotification", {
     Title = "Paralyz Hub",
-    Text = "✅ Key copied: " .. tostring(key),
+    Text = "✅ Key copied: " .. key,
     Duration = 5
 })
